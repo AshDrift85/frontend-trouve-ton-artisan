@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
+
 
 function Header() {
   const [categories, setCategories] = useState([]);
@@ -14,7 +16,7 @@ function Header() {
     <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-3">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          <img src="/logo.png" alt="Trouve ton artisan" style={{ height: '50px' }} />
+          <img src={logo} alt="Trouve ton artisan - Région Auvergne-Rhône-Alpes" className="logo"/>
         </Link>
 
         <button
@@ -43,7 +45,7 @@ function Header() {
           <form className="d-flex" role="search">
             <input
               type="search"
-              placeholder="Rechercher un artisan..."
+              placeholder="Rechercher"
               className="form-control"
             />
           </form>

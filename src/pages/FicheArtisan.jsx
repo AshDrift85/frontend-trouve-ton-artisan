@@ -36,50 +36,110 @@ function FicheArtisan() {
   };
 
   if (!artisan) {
-    return <p>Chargement...</p>;
+    return <p className="container py-5">Chargement...</p>;
   }
 
   return (
-    <main>
-      <h1>{artisan.nom}</h1>
-      <p>Note : {artisan.note} / 5</p>
-      <p>{artisan.Specialite.nom}</p>
-      <p>{artisan.ville}</p>
-      <p>{artisan.a_propos}</p>
-      {artisan.site_web && <a href={artisan.site_web}>{artisan.site_web}</a>}
+    <main className="container py-5">
+      <div className="row g-4">
+        {/* Colonne infos artisan */}
+        <section className="col-lg-6">
+          <div className="card shadow-sm border-0 h-100 p-4">
+            <h1 className="h2 mb-3">{artisan.nom}</h1>
+            <p className="mb-1">
+              <strong>Note :</strong> {artisan.note} / 5
+            </p>
+            <p className="mb-1">
+              <strong>Spécialité :</strong> {artisan.specialite?.nom}
+            </p>
+            <p className="mb-3">
+              <strong>Ville :</strong> {artisan.ville}
+            </p>
+            <h2 className="h5">À propos</h2>
+            <p>{artisan.a_propos}</p>
+            {artisan.site_web && (
+              <a href={artisan.site_web} target="_blank" rel="noopener noreferrer">
+                Visiter le site web
+              </a>
+            )}
+          </div>
+        </section>
 
-      <h2>Contacter cet artisan</h2>
-      <form onSubmit={envoyerFormulaire}>
-        <input
-          type="text"
-          placeholder="Votre nom"
-          value={nom}
-          onChange={(e) => setNom(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Votre email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Objet"
-          value={objet}
-          onChange={(e) => setObjet(e.target.value)}
-          required
-        />
-        <textarea
-          placeholder="Votre message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          required
-        />
-        <button type="submit">Envoyer</button>
-      </form>
-      {statutEnvoi && <p>{statutEnvoi}</p>}
+        {/* Colonne formulaire */}
+        <section className="col-lg-6">
+          <div className="card shadow-sm border-0 p-4">
+            <h2 className="h4 mb-4">Contacter cet artisan</h2>
+
+            {statutEnvoi && (
+              <div className="alert alert-success" role="status">
+                {statutEnvoi}
+              </div>
+            )}
+
+            <form onSubmit={envoyerFormulaire}>
+              <div className="mb-3">
+                <label htmlFor="nom" className="form-label">
+                  Nom
+                </label>
+                <input
+                  type="text"
+                  id="nom"
+                  className="form-control"
+                  value={nom}
+                  onChange={(e) => setNom(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  className="form-control"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="objet" className="form-label">
+                  Objet
+                </label>
+                <input
+                  type="text"
+                  id="objet"
+                  className="form-control"
+                  value={objet}
+                  onChange={(e) => setObjet(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label htmlFor="message" className="form-label">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  rows="5"
+                  className="form-control"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  required
+                />
+              </div>
+
+              <button type="submit" className="btn btn-brand w-100">
+                Envoyer
+              </button>
+            </form>
+          </div>
+        </section>
+      </div>
     </main>
   );
 }
