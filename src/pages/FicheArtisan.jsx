@@ -12,7 +12,7 @@ function FicheArtisan() {
   const [statutEnvoi, setStatutEnvoi] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/artisans/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/artisans/${id}`)
       .then((reponse) => reponse.json())
       .then((donnees) => setArtisan(donnees));
   }, [id]);
@@ -20,7 +20,7 @@ function FicheArtisan() {
   const envoyerFormulaire = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:3000/api/artisans/${id}/contact`, {
+    fetch(`${import.meta.env.VITE_API_URL}/artisans/${id}/contact`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nom, email, objet, message }),

@@ -9,7 +9,7 @@ function ListeArtisans() {
   const recherche = searchParams.get('recherche');
 
   useEffect(() => {
-    let url = 'http://localhost:3000/api/artisans';
+    let url = `${import.meta.env.VITE_API_URL}/artisans`;
     const params = new URLSearchParams();
 
     if (categorie) params.append('categorie', categorie);

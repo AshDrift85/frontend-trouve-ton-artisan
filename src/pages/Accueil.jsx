@@ -4,7 +4,7 @@ function Accueil() {
   const [artisansTop, setArtisansTop] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/artisans/top')
+    fetch(`${import.meta.env.VITE_API_URL}/artisans/top`)
       .then((reponse) => reponse.json())
       .then((donnees) => setArtisansTop(donnees));
   }, []);
