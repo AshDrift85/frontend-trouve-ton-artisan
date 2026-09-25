@@ -8,7 +8,7 @@ function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/menu')
+    fetch(`${import.meta.env.VITE_API_URL}/menu`)
       .then((reponse) => reponse.json())
       .then((donnees) => setCategories(donnees));
   }, []);
