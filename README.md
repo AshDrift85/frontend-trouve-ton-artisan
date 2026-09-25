@@ -77,6 +77,10 @@ src/
 └── main.jsx      # Point d'entrée (Bootstrap JS importé ici)
 ```
 
+## Déploiement
+
+Site en ligne sur [Vercel](https://vercel.com) : https://trouve-ton-artisan-web.vercel.app
+
 ## Auteur
 
 Baptiste — [AshDrift85](https://github.com/AshDrift85)
