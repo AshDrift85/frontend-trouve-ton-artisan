@@ -50,7 +50,7 @@ function FicheArtisan() {
               <strong>Note :</strong> {artisan.note} / 5
             </p>
             <p className="mb-1">
-              <strong>Spécialité :</strong> {artisan.specialite?.nom}
+              <strong>Spécialité :</strong> {artisan.Specialite?.nom}
             </p>
             <p className="mb-3">
               <strong>Ville :</strong> {artisan.ville}
