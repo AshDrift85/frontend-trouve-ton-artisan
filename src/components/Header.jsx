@@ -1,16 +1,23 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
-
 
 function Header() {
   const [categories, setCategories] = useState([]);
+  const [recherche, setRecherche] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:3000/api/menu')
       .then((reponse) => reponse.json())
       .then((donnees) => setCategories(donnees));
   }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (recherche.trim() === '') return;
+    navigate(`/artisans?recherche=${encodeURIComponent(recherche)}`);
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-3">
@@ -42,11 +49,14 @@ function Header() {
             ))}
           </ul>
 
-          <form className="d-flex" role="search">
+          <form className="d-flex" role="search" onSubmit={handleSubmit}>
             <input
               type="search"
               placeholder="Rechercher"
-              className="form-control"
+              className="form-control recherche"
+              value={recherche}
+              onChange={(e) => setRecherche(e.target.value)}
+              aria-label="Rechercher un artisan"
             />
           </form>
         </div>
